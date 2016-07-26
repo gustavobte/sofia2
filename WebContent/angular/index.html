@@ -10,12 +10,8 @@
 		<div layout="column" layout-align="center">
 			<md-button md-no-ink class="md-primary" ng-click="indexarEnderecos()">Indexar
 			Endereços</md-button>
-			<md-button md-no-ink class="md-primary"
-				ng-click="calcularScoreCandidatos()"> Calcular Score
-			Candidatos</md-button>
-			<md-button md-no-ink class="md-primary"
-				ng-click="calcularScoreComparacao()"> Calcular Score dos
-			Endereços de Comparação</md-button>
+			<md-button md-no-ink class="md-primary" ng-click="calcularScore()">
+			Calcular Score</md-button>
 			<div layout="row">
 				<div flex="40">
 					<md-content layout-padding> <md-toolbar
@@ -27,7 +23,8 @@
 						ng-repeat="enderecoCandidato in enderecosCandidatos">
 					<md-checkbox ng-model="enderecoCandidato.checked"></md-checkbox>
 					<div class="md-list-item-text" layout="column">
-						<h3>{{enderecoCandidato.id}} - {{enderecoCandidato.endereco}} </h3>
+						<h3>{{enderecoCandidato.id}} - {{enderecoCandidato.endereco}}
+						</h3>
 						<p>Pontuação: {{enderecoCandidato.pontuacao}}</p>
 					</div>
 					</md-list-item> </md-list> </md-content>
@@ -38,18 +35,14 @@
 					<h2 class="md-toolbar-tools">
 						<span>Endereços não estruturados</span>
 					</h2>
-					</md-toolbar>
-					
-					<md-list> <md-list-item class="md-2-line"
-						ng-repeat="endereco in enderecosComparacao">
-					<md-checkbox ng-model="enderecoCandidato.checked"></md-checkbox>
+					</md-toolbar> <md-list> <md-list-item class="md-2-line"
+						ng-repeat="endereco in enderecosComparacao"> <md-checkbox
+						ng-model="enderecoCandidato.checked"></md-checkbox>
 					<div class="md-list-item-text" layout="column">
-						<h3>{{endereco.id}} - {{endereco.endereco}} </h3>
+						<h3>{{endereco.id}} - {{endereco.endereco}}</h3>
 						<p>Pontuação: {{endereco.pontuacao}}</p>
 					</div>
-					</md-list-item> </md-list>
-					
-					</md-content>
+					</md-list-item> </md-list> </md-content>
 				</div>
 			</div>
 		</div>

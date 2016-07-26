@@ -35,7 +35,7 @@ public class SearchFiles {
 
 			for (int i = 0; i < myTypes.candidatos.size(); i++) {
 				Query query = parser.parse(myTypes.candidatos.get(i).endereco);
-				System.out.println("Avaliando endereços com dados: " + query.toString(FIELD));
+				System.out.println("\nAvaliando endereços com dados: " + query.toString(FIELD));
 				searcher.search(query, 100);
 				myTypes.candidatos.get(i).pontuacao = doSearch(searcher, query, hitsPerPage);
 			}
@@ -71,6 +71,6 @@ public class SearchFiles {
 			}
 		}
 
-		return scores / 5;
+		return scores;
 	}
 }
