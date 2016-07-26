@@ -20,7 +20,7 @@ public class LuceneServiceBuildResult {
 	// TODO Retornar JSON com o endereço candidato, endereços comparados, sua
 	// pontuação e seus matchs
 	public void buildResult(IndexReader reader, IndexSearcher searcher, ScoreDoc[] hits) throws IOException {
-		System.out.println("Achamos " + hits.length + " resultados.");
+		System.out.println("Achamos ss " + hits.length + " resultados.");
 		for (int i = 0; i < hits.length; ++i) {
 			int docId = hits[i].doc;
 			Document d = searcher.doc(docId);

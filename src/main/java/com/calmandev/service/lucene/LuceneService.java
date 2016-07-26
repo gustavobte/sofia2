@@ -12,12 +12,11 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.Directory;
 
 import main.java.com.calmandev.model.Endereco;
-import main.java.com.calmandev.model.Enderecos;
 
 public class LuceneService {
 
 	static final int HITS_PER_PAGE = 50;
-	static final String INDEX_DIRECTORY = "index";
+	static final String INDEX_DIRECTORY = "c:\\index";
 
 	public Directory directory;
 	public Query query;
