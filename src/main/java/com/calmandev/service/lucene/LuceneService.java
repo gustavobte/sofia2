@@ -1,4 +1,4 @@
-package main.java.com.calmandev;
+package main.java.com.calmandev.service.lucene;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +10,9 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.Directory;
+
+import main.java.com.calmandev.model.Endereco;
+import main.java.com.calmandev.model.Enderecos;
 
 public class LuceneService {
 
@@ -42,11 +45,11 @@ public class LuceneService {
 	 * @param enderecosComparacaoJson
 	 * @throws IOException
 	 */
-	public void generateScore(String enderecoCandidatoJson, ArrayList<String> enderecosComparacaoJson)
+	public void generateScore(Endereco enderecoCandidatoJson, ArrayList<Endereco> enderecosComparacaoJson)
 			throws IOException {
 
-		this.directory = this.lsIndexer.indexToDirectory(analyzer);
-		this.query = this.lsBuildQuery.buildQuery(analyzer);
+		this.directory = this.lsIndexer.indexToDirectory(analyzer, enderecosComparacaoJson);
+		this.query = this.lsBuildQuery.buildQuery(analyzer, enderecoCandidatoJson);
 
 		IndexReader reader = DirectoryReader.open(directory);
 

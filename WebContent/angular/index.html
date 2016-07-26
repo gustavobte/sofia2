@@ -8,8 +8,6 @@
 <body ng-app="app" ng-cloak>
 	<div ng-controller="controller">
 		<div layout="column" layout-align="center">
-			<md-button md-no-ink class="md-primary" ng-click="indexarEnderecos()">Indexar
-			Endereços</md-button>
 			<md-button md-no-ink class="md-primary" ng-click="calcularScore()">
 			Calcular Score</md-button>
 			<div layout="row">
@@ -21,6 +19,7 @@
 					</h2>
 					</md-toolbar> <md-list> <md-list-item class="md-2-line"
 						ng-repeat="enderecoCandidato in enderecosCandidatos">
+						
 					<md-checkbox ng-model="enderecoCandidato.checked"></md-checkbox>
 					<div class="md-list-item-text" layout="column">
 						<h3>{{enderecoCandidato.id}} - {{enderecoCandidato.endereco}}

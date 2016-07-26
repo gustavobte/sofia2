@@ -1,4 +1,4 @@
-package main.java.com.calmandev;
+package main.java.com.calmandev.service.lucene;
 
 import java.io.IOException;
 

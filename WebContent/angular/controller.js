@@ -21,7 +21,7 @@ app.controller("controller", function($scope, $http) {
 
 	$scope.calcularScore = function() {
 		$scope.bancoEnderecos = {
-			"candidatos" : $scope.enderecosCandidatos,
+			"candidato" : $scope.enderecosCandidatos,
 			"comparacao" : $scope.enderecosComparacao
 		}
 
@@ -30,13 +30,6 @@ app.controller("controller", function($scope, $http) {
 					$scope.enderecos = result.data;
 				});
 
-	}
-
-	$scope.indexarEnderecos = function() {
-		$http.post(apiEnderecos + 'indexar', $scope.enderecosComparacao).then(
-				function(result) {
-					console.log(result.data);
-				});
 	}
 
 });

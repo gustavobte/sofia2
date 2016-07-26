@@ -1,6 +1,6 @@
-package main.java.com.calmandev;
+package main.java.com.calmandev.service.rest;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -9,6 +9,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
+
+import main.java.com.calmandev.model.Enderecos;
+import main.java.com.calmandev.service.lucene.LuceneService;
 
 @Path("enderecos")
 public class RESTServiceEnderecos {
@@ -20,24 +23,17 @@ public class RESTServiceEnderecos {
 	}
 
 	@POST
-	@Path("/calculaScore")
+	@Path("calculaScore")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response calculaScore(String enderecosJson) {
 		Gson gson = new Gson();
-		TypeDTO enderecos = gson.fromJson(enderecosJson, TypeDTO.class);
-		enderecos.candidatos = SearchFiles.calculaScore(enderecos);
+		Enderecos enderecos = gson.fromJson(enderecosJson, Enderecos.class);
+		try {
+			ls.generateScore(enderecos.candidato, enderecos.comparacao);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-		return Response.status(200).entity(gson.toJson(enderecos.candidatos)).build();
+		return Response.status(200).entity("").build();
 	}
-}
-
-class TypeDTO {
-	ArrayList<ItemDTO> candidatos;
-	ArrayList<ItemDTO> comparacao;
-}
-
-class ItemDTO {
-	Long id;
-	String endereco;
-	Double pontuacao;
 }
