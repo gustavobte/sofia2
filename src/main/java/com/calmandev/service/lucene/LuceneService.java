@@ -16,7 +16,7 @@ import main.java.com.calmandev.model.Endereco;
 public class LuceneService {
 
 	static final int HITS_PER_PAGE = 50;
-	static final String INDEX_DIRECTORY = "c:\\index";
+	static final String INDEX_DIRECTORY = "index";
 
 	public Directory directory;
 	public Query query;
