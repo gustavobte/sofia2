@@ -18,11 +18,11 @@ public class LuceneService {
 	static final int HITS_PER_PAGE = 50;
 	static final String INDEX_DIRECTORY = "index";
 
-	public Directory directory;
-	public Query query;
-	public StandardAnalyzer analyzer;
-	public IndexSearcher searcher;
-	public ScoreDoc[] hits;
+	private Directory directory;
+	private IndexSearcher indexSearcher;
+	private Query query;
+	private ScoreDoc[] scoreDocs;
+	private StandardAnalyzer standardAnalyzer;
 
 	private LuceneServiceBuildResult lsBuildResult;
 	private LuceneServiceSearch lsSearch;
@@ -30,7 +30,7 @@ public class LuceneService {
 	private LuceneServiceIndexer lsIndexer;
 
 	public LuceneService() {
-		this.analyzer = new StandardAnalyzer();
+		this.standardAnalyzer = new StandardAnalyzer();
 		this.lsBuildResult = new LuceneServiceBuildResult();
 		this.lsSearch = new LuceneServiceSearch();
 		this.lsBuildQuery = new LuceneServiceBuildQuery();
@@ -47,15 +47,15 @@ public class LuceneService {
 	public void generateScore(Endereco enderecoCandidatoJson, ArrayList<Endereco> enderecosComparacaoJson)
 			throws IOException {
 
-		this.directory = this.lsIndexer.indexToDirectory(analyzer, enderecosComparacaoJson);
-		this.query = this.lsBuildQuery.buildQuery(analyzer, enderecoCandidatoJson);
+		this.directory = this.lsIndexer.indexToDirectory(standardAnalyzer, enderecosComparacaoJson);
+		this.query = this.lsBuildQuery.buildQuery(standardAnalyzer, enderecoCandidatoJson);
 
 		IndexReader reader = DirectoryReader.open(directory);
 
-		this.searcher = new IndexSearcher(reader);
-		this.hits = lsSearch.search(query, searcher);
+		this.indexSearcher = new IndexSearcher(reader);
+		this.scoreDocs = lsSearch.search(query, indexSearcher);
 
-		lsBuildResult.buildResult(reader, searcher, hits);
+		lsBuildResult.buildResult(reader, indexSearcher, scoreDocs);
 	}
 
 }
